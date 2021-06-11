@@ -10,9 +10,11 @@ import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.util.HashSet;
 import java.util.Set;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -27,9 +29,12 @@ public class Inicio extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         // ac = new AdminCancion(this.jp_BarraPlay);
-        AdminCancion h = new AdminCancion(jProgressBar1, lbl_Tiempo);
-        Thread proceso1 = new Thread(h);
-        proceso1.start();
+        Administrador c = new Administrador("./canciones.nx");
+        //Thread proceso1 = new Thread(h);
+        //proceso1.start();
+        
+        DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_Canciones.getModel();
+        modelo.addElement(c.getCanciones());
     }
 
     /**
@@ -94,9 +99,15 @@ public class Inicio extends javax.swing.JFrame {
         Listar = new javax.swing.JDialog();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabla_Album = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tabla_Artistas = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
-        jProgressBar1 = new javax.swing.JProgressBar();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tabla_Canciones = new javax.swing.JTable();
+        pb_Barra = new javax.swing.JProgressBar();
         btn_Play = new javax.swing.JButton();
         btn_Pause = new javax.swing.JButton();
         btn_Crear = new javax.swing.JButton();
@@ -423,41 +434,122 @@ public class Inicio extends javax.swing.JFrame {
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
+        jTabbedPane2.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jTabbedPane2StateChanged(evt);
+            }
+        });
+
+        tabla_Album.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre", "Fecha de Publicacion", "Genero", "Formato", "Productor"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tabla_Album);
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 712, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 712, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 425, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Albumes", jPanel4);
+
+        tabla_Artistas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre", "Alias", "Genero Musical", "Disquera"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(tabla_Artistas);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 712, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 712, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 425, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Artistas", jPanel5);
+
+        tabla_Canciones.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre", "Compositor", "Genero", "Duracion"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tabla_Canciones);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 712, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 712, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 425, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Canciones", jPanel6);
@@ -475,10 +567,15 @@ public class Inicio extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jProgressBar1.setString("");
-        jProgressBar1.setStringPainted(true);
+        pb_Barra.setString("");
+        pb_Barra.setStringPainted(true);
 
         btn_Play.setText("Play");
+        btn_Play.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_PlayMouseClicked(evt);
+            }
+        });
 
         btn_Pause.setText("Pause");
 
@@ -514,7 +611,16 @@ public class Inicio extends javax.swing.JFrame {
 
         lbl_Tiempo.setText("00:00");
 
-        cb_Canciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cb_Canciones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cb_CancionesMouseClicked(evt);
+            }
+        });
+        cb_Canciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_CancionesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -528,7 +634,7 @@ public class Inicio extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(pb_Barra, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lbl_Duracion))
                             .addGroup(layout.createSequentialGroup()
@@ -564,7 +670,7 @@ public class Inicio extends javax.swing.JFrame {
                         .addGap(36, 36, 36)
                         .addComponent(cb_Canciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pb_Barra, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_Play)
@@ -592,12 +698,7 @@ public class Inicio extends javax.swing.JFrame {
         }
 
         Artistas a = new Artistas(tf_NombreArtista.getText(), tf_Genero.getText(), tf_Disquera.getText(), tf_Alias.getText(), tipo);
-        String op = "s";
 
-        int cant = 1;
-        while (op.equals("s")) {
-
-        }
         Administrador admin = new Administrador("./artistas.nx");
 
         admin.cargarArtista();
@@ -625,9 +726,9 @@ public class Inicio extends javax.swing.JFrame {
         } else {
             exclusiva += "No";
         }
-        
-        Canciones c = new Canciones(tf_NombreCancion.getText(), Integer.parseInt(tf_Duracion.getText()),tf_Compositor.getText(), tf_Distribuidor.getText(),exclusiva, tf_Productor.getText());
-        
+
+        Canciones c = new Canciones(tf_NombreCancion.getText(), Integer.parseInt(tf_Duracion.getText()), tf_Compositor.getText(), tf_Distribuidor.getText(), exclusiva, tf_Productor.getText());
+
         Administrador admin = new Administrador("./canciones.nx");
 
         admin.cargarCancion();
@@ -635,29 +736,54 @@ public class Inicio extends javax.swing.JFrame {
         admin.escribirCancion();
 
         JOptionPane.showMessageDialog(this, "Cancion guardada");
+        
+        int aux = c.getDuracion();
+        int minutos = 0;
+
+        minutos = aux / 60;
+        int segundos = aux % 60;
+        String tiempo = "";
+        if (segundos < 10) {
+                tiempo+= minutos+":0"+segundos;
+            } else {
+                tiempo+= minutos+":"+segundos;
+            }
+        
+        Object[] newrow = {c.getNombre(), c.getCompositor(), c.getDistribuidor(), tiempo};
+        
+        DefaultTableModel modelo = (DefaultTableModel) tabla_Canciones.getModel();
+        modelo.addRow(newrow);
+        tabla_Canciones.setModel(modelo);
     }//GEN-LAST:event_btn_CancionesMouseClicked
 
     private void btn_GuardarAlbumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_GuardarAlbumMouseClicked
         String formato = "";
         if (rdb_Digital.isSelected()) {
             formato += "Digital";
-        }else{
+        } else {
             formato += "CD";
         }
-        
-        Albumes album = new Albumes(tf_NombreAlbum.getText(),tf_Fecha.getText(),tf_GeneroAlbum.getText(),formato, tf_AliasProductor.getText());
-        
+
+        Albumes album = new Albumes(tf_NombreAlbum.getText(), tf_Fecha.getText(), tf_GeneroAlbum.getText(), formato, tf_AliasProductor.getText());
+
         Administrador admin = new Administrador("./albumes.nx");
-        
+
         admin.cargarAlbum();
         admin.setAlbum(album);
         admin.escribirAlbum();
-        
+
         JOptionPane.showMessageDialog(this, "Album guardado");
+        
+        Object[] newrow = {album.getNombre(), album.getFecha_p(), album.getGenero(),album.getFormato(), album.getAlias_p()};
+        
+        DefaultTableModel modelo = (DefaultTableModel) tabla_Album.getModel();
+        modelo.addRow(newrow);
+        tabla_Album.setModel(modelo);
+    
     }//GEN-LAST:event_btn_GuardarAlbumMouseClicked
 
     private void btn_CrearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_CrearMouseClicked
-        this.dispose();//bloquea el fondo
+        //this.dispose();//bloquea el fondo
         Crear.pack();//permite ampliar el tamaño de la ventana
         Crear.setLocationRelativeTo(null);
 
@@ -665,7 +791,7 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_CrearMouseClicked
 
     private void btn_ListarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ListarMouseClicked
-        this.dispose();//bloquea el fondo
+        //this.dispose();//bloquea el fondo
         Listar.pack();//permite ampliar el tamaño de la ventana
         Listar.setLocationRelativeTo(null);
 
@@ -673,7 +799,7 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_ListarMouseClicked
 
     private void btn_ModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ModificarMouseClicked
-        this.dispose();//bloquea el fondo
+        //this.dispose();//bloquea el fondo
         Modificar.pack();//permite ampliar el tamaño de la ventana
         Modificar.setLocationRelativeTo(null);
 
@@ -681,12 +807,52 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_ModificarMouseClicked
 
     private void btn_EliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_EliminarMouseClicked
-        this.dispose();//bloquea el fondo
+        //this.dispose();//bloquea el fondo
         Eliminar.pack();//permite ampliar el tamaño de la ventana
         Eliminar.setLocationRelativeTo(null);
 
         Eliminar.setVisible(true);
     }//GEN-LAST:event_btn_EliminarMouseClicked
+
+    private void jTabbedPane2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane2StateChanged
+
+    }//GEN-LAST:event_jTabbedPane2StateChanged
+
+    private void cb_CancionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_CancionesActionPerformed
+        /*Administrador admin = new Administrador("./canciones.nx");
+        admin.cargarCancion();
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel(admin.getCanciones().toArray());
+        cb_Canciones.setModel(modelo);*/
+    }//GEN-LAST:event_cb_CancionesActionPerformed
+
+    private void cb_CancionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cb_CancionesMouseClicked
+        Canciones c = (Canciones) cb_Canciones.getSelectedItem();
+        ac = cb_Canciones.getSelectedIndex();
+
+        int aux = c.getDuracion();
+        int minutos = 0;
+
+        minutos = aux / 60;
+        int segundos = aux % 60;
+
+        if (c != null) {
+            if (segundos < 10) {
+                lbl_Duracion.setText(minutos + ":0" + segundos);
+            } else {
+                lbl_Duracion.setText(minutos + ":" + segundos);
+            }
+            
+        }
+    }//GEN-LAST:event_cb_CancionesMouseClicked
+
+    private void btn_PlayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_PlayMouseClicked
+        Canciones c = (Canciones) cb_Canciones.getSelectedItem();
+        ac = cb_Canciones.getSelectedIndex();
+        
+        AdminCancion admin = new AdminCancion(pb_Barra, lbl_Tiempo);
+        pb_Barra.setMaximum(c.getDuracion());
+        
+    }//GEN-LAST:event_btn_PlayMouseClicked
 
     /**
      * @param args the command line arguments
@@ -764,17 +930,23 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JLabel lbl_Duracion;
     private javax.swing.JLabel lbl_Tiempo;
+    private javax.swing.JProgressBar pb_Barra;
     private javax.swing.JRadioButton rdb_CD;
     private javax.swing.JRadioButton rdb_Digital;
     private javax.swing.JRadioButton rdb_Instrumental;
     private javax.swing.JRadioButton rdb_No;
     private javax.swing.JRadioButton rdb_Si;
     private javax.swing.JRadioButton rdb_Voz;
+    private javax.swing.JTable tabla_Album;
+    private javax.swing.JTable tabla_Artistas;
+    private javax.swing.JTable tabla_Canciones;
     private javax.swing.JTextField tf_Alias;
     private javax.swing.JTextField tf_AliasProductor;
     private javax.swing.JTextField tf_Compositor;
@@ -790,5 +962,6 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JTextField tf_NombreCancion;
     private javax.swing.JTextField tf_Productor;
     // End of variables declaration//GEN-END:variables
-    AdminCancion ac;
+    int ac;
+    int flag = 1;
 }
