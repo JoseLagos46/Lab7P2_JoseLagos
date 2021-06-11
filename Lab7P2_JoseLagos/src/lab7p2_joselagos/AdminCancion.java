@@ -1,17 +1,26 @@
 package lab7p2_joselagos;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JLabel;
 import javax.swing.JProgressBar;
 
-public class AdminCancion {
+public class AdminCancion extends Thread {
     private JProgressBar barra;
     private boolean play;
     private boolean continua;
-
-    public AdminCancion(JProgressBar barra) {
+    private JLabel tiempo;
+    private Canciones cancion;
+    
+    public AdminCancion(JProgressBar barra, JLabel tiempo) {
         this.barra = barra;
-        play = true;
-        continua = true;
+        this.play = true;
+        this.continua = true;
+        this.tiempo = tiempo;
     }
+
+    
 
     public void setPlay(boolean play) {
         this.play = play;
@@ -23,23 +32,27 @@ public class AdminCancion {
     
     public void run(){
         int minutos = 0;
-        int segundos = 0;
+        int segundos1 = 0;
+        int segundos2 = 0;
         while(continua){
             if(play){
-                barra.setValue(segundos+1);
+                tiempo.setText(minutos+":"+segundos1+""+segundos2);
+                segundos2++;
                 
-                if(barra.getValue() == 60){
+                if(segundos2 == 10){
+                    segundos1++;
+                    segundos2 = 0;
+                }
+                if(segundos1 == 6){
                     minutos++;
-                    segundos = 0;
-                    
-                    barra.setString(minutos+":"+segundos);
-                }else{
-                    barra.setString(minutos+":"+segundos);
+                    segundos1 = 0;
+                    segundos2 = 0;
                 }
                 
+                barra.setString("");
             }
             try{
-                Thread.sleep(50);
+                Thread.sleep(1000);
             }
             catch(InterruptedException ex){
                 
