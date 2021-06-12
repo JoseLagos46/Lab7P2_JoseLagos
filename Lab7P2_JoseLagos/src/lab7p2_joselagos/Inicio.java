@@ -33,6 +33,8 @@ public class Inicio extends javax.swing.JFrame {
         //Thread proceso1 = new Thread(h);
         //proceso1.start();
         
+        play = new AdminCancion(pb_Barra, lbl_Tiempo);
+
         DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_Canciones.getModel();
         modelo.addElement(c.getCanciones());
     }
@@ -94,8 +96,55 @@ public class Inicio extends javax.swing.JFrame {
         Tipo = new javax.swing.ButtonGroup();
         Exclusivo = new javax.swing.ButtonGroup();
         Formato = new javax.swing.ButtonGroup();
-        Modificar = new javax.swing.JDialog();
         Eliminar = new javax.swing.JDialog();
+        Modificar = new javax.swing.JDialog();
+        jTabbedPane3 = new javax.swing.JTabbedPane();
+        jPanel7 = new javax.swing.JPanel();
+        cb_AlbumesMod = new javax.swing.JComboBox<>();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        tf_NombreAlbumMod = new javax.swing.JTextField();
+        tf_FechaAlbumMod = new javax.swing.JFormattedTextField();
+        tf_AliasAlbumMod = new javax.swing.JTextField();
+        tf_GeneroAlbumMod = new javax.swing.JTextField();
+        rdb_DigitalMod = new javax.swing.JRadioButton();
+        rdb_CDMod = new javax.swing.JRadioButton();
+        btn_ModAlbum = new javax.swing.JButton();
+        jPanel8 = new javax.swing.JPanel();
+        cb_ArtistasMod = new javax.swing.JComboBox<>();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        rdb_InstrunetalMod = new javax.swing.JRadioButton();
+        rdb_VozMod = new javax.swing.JRadioButton();
+        tf_AliasMod = new javax.swing.JTextField();
+        tf_NombreArtistaMod = new javax.swing.JTextField();
+        tf_GeneroArtMod = new javax.swing.JTextField();
+        tf_DisqueraMod = new javax.swing.JTextField();
+        btn_ModArt = new javax.swing.JButton();
+        jPanel9 = new javax.swing.JPanel();
+        cb_CancionesMod = new javax.swing.JComboBox<>();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
+        rdb_siMod = new javax.swing.JRadioButton();
+        rdb_nomod = new javax.swing.JRadioButton();
+        btn_ModCancion = new javax.swing.JButton();
+        tf_NombreCancionMod = new javax.swing.JTextField();
+        tf_DuracionMod = new javax.swing.JTextField();
+        tf_CompositorMod = new javax.swing.JTextField();
+        tf_DistribuidorMod = new javax.swing.JTextField();
+        tf_ProductorMod = new javax.swing.JTextField();
+        tf_InvitadoMod = new javax.swing.JTextField();
         Listar = new javax.swing.JDialog();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
@@ -107,6 +156,9 @@ public class Inicio extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabla_Canciones = new javax.swing.JTable();
+        ModAlbum = new javax.swing.ButtonGroup();
+        ModArt = new javax.swing.ButtonGroup();
+        ModCancion = new javax.swing.ButtonGroup();
         pb_Barra = new javax.swing.JProgressBar();
         btn_Play = new javax.swing.JButton();
         btn_Pause = new javax.swing.JButton();
@@ -412,17 +464,6 @@ public class Inicio extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout ModificarLayout = new javax.swing.GroupLayout(Modificar.getContentPane());
-        Modificar.getContentPane().setLayout(ModificarLayout);
-        ModificarLayout.setHorizontalGroup(
-            ModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        ModificarLayout.setVerticalGroup(
-            ModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout EliminarLayout = new javax.swing.GroupLayout(Eliminar.getContentPane());
         Eliminar.getContentPane().setLayout(EliminarLayout);
         EliminarLayout.setHorizontalGroup(
@@ -432,6 +473,332 @@ public class Inicio extends javax.swing.JFrame {
         EliminarLayout.setVerticalGroup(
             EliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        cb_AlbumesMod.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        cb_AlbumesMod.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_AlbumesModItemStateChanged(evt);
+            }
+        });
+
+        jLabel18.setText("Nombre:");
+
+        jLabel19.setText("Fecha:");
+
+        jLabel20.setText("Genero:");
+
+        jLabel21.setText("Formato:");
+
+        jLabel22.setText("Alias:");
+
+        tf_FechaAlbumMod.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+
+        ModAlbum.add(rdb_DigitalMod);
+        rdb_DigitalMod.setSelected(true);
+        rdb_DigitalMod.setText("Digital");
+
+        ModAlbum.add(rdb_CDMod);
+        rdb_CDMod.setText("CD");
+
+        btn_ModAlbum.setText("Modificar");
+        btn_ModAlbum.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_ModAlbumMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cb_AlbumesMod, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabel22)
+                        .addGap(230, 230, 230)
+                        .addComponent(btn_ModAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel18)
+                            .addComponent(jLabel19)
+                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(tf_AliasAlbumMod, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+                                .addComponent(tf_FechaAlbumMod, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(tf_NombreAlbumMod, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addGap(75, 75, 75)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel21)
+                            .addComponent(jLabel20)
+                            .addComponent(tf_GeneroAlbumMod, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(rdb_DigitalMod)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(rdb_CDMod)))))
+                .addContainerGap(131, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(cb_AlbumesMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18)
+                    .addComponent(jLabel20))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tf_NombreAlbumMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_GeneroAlbumMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel19)
+                    .addComponent(jLabel21))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tf_FechaAlbumMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rdb_DigitalMod)
+                    .addComponent(rdb_CDMod))
+                .addGap(32, 32, 32)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel22)
+                    .addComponent(btn_ModAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tf_AliasAlbumMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+
+        jTabbedPane3.addTab("Albumes", jPanel7);
+
+        cb_ArtistasMod.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_ArtistasModItemStateChanged(evt);
+            }
+        });
+
+        jLabel23.setText("Nombre:");
+
+        jLabel24.setText("Genero de musica:");
+
+        jLabel25.setText("Disquera:");
+
+        jLabel26.setText("Alias");
+
+        jLabel27.setText("Tipo");
+
+        ModArt.add(rdb_InstrunetalMod);
+        rdb_InstrunetalMod.setSelected(true);
+        rdb_InstrunetalMod.setText("Instrumental");
+
+        ModArt.add(rdb_VozMod);
+        rdb_VozMod.setText("De Voz");
+
+        btn_ModArt.setText("Modificar");
+        btn_ModArt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_ModArtMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(tf_DisqueraMod, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                    .addComponent(jLabel23, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cb_ArtistasMod, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel24, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel25, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tf_NombreArtistaMod, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tf_GeneroArtMod, javax.swing.GroupLayout.Alignment.LEADING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 178, Short.MAX_VALUE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel26)
+                    .addComponent(jLabel27)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(rdb_InstrunetalMod)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rdb_VozMod))
+                    .addComponent(tf_AliasMod, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(66, 66, 66))
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(215, 215, 215)
+                .addComponent(btn_ModArt, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(cb_ArtistasMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel23)
+                    .addComponent(jLabel26))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(tf_AliasMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(2, 2, 2))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                        .addComponent(tf_NombreArtistaMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addComponent(jLabel24)
+                .addGap(7, 7, 7)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel27)
+                    .addComponent(tf_GeneroArtMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(5, 5, 5)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel25)
+                    .addComponent(rdb_InstrunetalMod)
+                    .addComponent(rdb_VozMod))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tf_DisqueraMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_ModArt, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(50, Short.MAX_VALUE))
+        );
+
+        jTabbedPane3.addTab("Artistas", jPanel8);
+
+        cb_CancionesMod.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_CancionesModItemStateChanged(evt);
+            }
+        });
+
+        jLabel28.setText("Nombre:");
+
+        jLabel29.setText("Duracion:");
+
+        jLabel30.setText("Compositor:");
+
+        jLabel31.setText("Distribuidor:");
+
+        jLabel32.setText("Productor:");
+
+        jLabel33.setText("Artista Invitado:");
+
+        jLabel34.setText("Exclusiva de Spotify");
+
+        ModCancion.add(rdb_siMod);
+        rdb_siMod.setSelected(true);
+        rdb_siMod.setText("Si");
+
+        ModCancion.add(rdb_nomod);
+        rdb_nomod.setText("No");
+
+        btn_ModCancion.setText("Modificar");
+        btn_ModCancion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_ModCancionMouseClicked(evt);
+            }
+        });
+
+        tf_DuracionMod.setText("'");
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(rdb_siMod)
+                                .addGap(18, 18, 18)
+                                .addComponent(rdb_nomod))
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(tf_DistribuidorMod, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
+                                .addComponent(btn_ModCancion, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(156, 156, 156))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cb_CancionesMod, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel31)
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel28)
+                                    .addComponent(jLabel29)
+                                    .addComponent(jLabel30)
+                                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(tf_CompositorMod, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(tf_NombreCancionMod, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(tf_DuracionMod, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(148, 148, 148)
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel34)
+                                    .addComponent(jLabel33)
+                                    .addComponent(jLabel32)
+                                    .addComponent(tf_ProductorMod)
+                                    .addComponent(tf_InvitadoMod, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(cb_CancionesMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel28)
+                    .addComponent(jLabel32))
+                .addGap(5, 5, 5)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tf_NombreCancionMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_ProductorMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel29)
+                    .addComponent(jLabel33))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tf_DuracionMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_InvitadoMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel30)
+                    .addComponent(jLabel34))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(rdb_siMod)
+                        .addComponent(rdb_nomod))
+                    .addComponent(tf_CompositorMod, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel31)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_ModCancion, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(tf_DistribuidorMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+
+        jTabbedPane3.addTab("Canciones", jPanel9);
+
+        javax.swing.GroupLayout ModificarLayout = new javax.swing.GroupLayout(Modificar.getContentPane());
+        Modificar.getContentPane().setLayout(ModificarLayout);
+        ModificarLayout.setHorizontalGroup(
+            ModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTabbedPane3)
+        );
+        ModificarLayout.setVerticalGroup(
+            ModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTabbedPane3)
         );
 
         jTabbedPane2.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -578,6 +945,11 @@ public class Inicio extends javax.swing.JFrame {
         });
 
         btn_Pause.setText("Pause");
+        btn_Pause.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_PauseMouseClicked(evt);
+            }
+        });
 
         btn_Crear.setText("Crear");
         btn_Crear.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -707,12 +1079,19 @@ public class Inicio extends javax.swing.JFrame {
 
         JOptionPane.showMessageDialog(this, "Artista guardado");
 
+        Object[] newrow = {a.getNombre(), a.getAlias(), a.getGenero(), a.getDisquera()};
+
+        DefaultTableModel modelo = (DefaultTableModel) tabla_Artistas.getModel();
+        modelo.addRow(newrow);
+        tabla_Artistas.setModel(modelo);
+
         tf_NombreArtista.setText("");
         tf_Genero.setText("");
         tf_Disquera.setText("");
         tf_Disquera.setText("");
         rdb_Instrumental.setSelected(true);
         rdb_Voz.setSelected(false);
+
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void tf_NombreCancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_NombreCancionActionPerformed
@@ -736,7 +1115,7 @@ public class Inicio extends javax.swing.JFrame {
         admin.escribirCancion();
 
         JOptionPane.showMessageDialog(this, "Cancion guardada");
-        
+
         int aux = c.getDuracion();
         int minutos = 0;
 
@@ -744,16 +1123,32 @@ public class Inicio extends javax.swing.JFrame {
         int segundos = aux % 60;
         String tiempo = "";
         if (segundos < 10) {
-                tiempo+= minutos+":0"+segundos;
-            } else {
-                tiempo+= minutos+":"+segundos;
-            }
-        
+            tiempo += minutos + ":0" + segundos;
+        } else {
+            tiempo += minutos + ":" + segundos;
+        }
+
         Object[] newrow = {c.getNombre(), c.getCompositor(), c.getDistribuidor(), tiempo};
-        
+
         DefaultTableModel modelo = (DefaultTableModel) tabla_Canciones.getModel();
         modelo.addRow(newrow);
         tabla_Canciones.setModel(modelo);
+
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cb_Canciones.getModel();
+        model.addElement(c);
+        cb_Canciones.setModel(model);
+
+        DefaultComboBoxModel mod = (DefaultComboBoxModel) cb_CancionesMod.getModel();
+        mod.addElement(c);
+        cb_CancionesMod.setModel(mod);
+        
+        tf_NombreCancion.setText("");
+        tf_Duracion.setText("");
+        tf_Compositor.setText("");
+        tf_Distribuidor.setText("");
+        tf_Productor.setText("");
+        rdb_Si.setSelected(true);
+        rdb_No.setSelected(false);
     }//GEN-LAST:event_btn_CancionesMouseClicked
 
     private void btn_GuardarAlbumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_GuardarAlbumMouseClicked
@@ -773,13 +1168,23 @@ public class Inicio extends javax.swing.JFrame {
         admin.escribirAlbum();
 
         JOptionPane.showMessageDialog(this, "Album guardado");
-        
-        Object[] newrow = {album.getNombre(), album.getFecha_p(), album.getGenero(),album.getFormato(), album.getAlias_p()};
-        
+
+        Object[] newrow = {album.getNombre(), album.getFecha_p(), album.getGenero(), album.getFormato(), album.getAlias_p()};
+
         DefaultTableModel modelo = (DefaultTableModel) tabla_Album.getModel();
         modelo.addRow(newrow);
         tabla_Album.setModel(modelo);
-    
+
+        DefaultComboBoxModel mod = (DefaultComboBoxModel) cb_AlbumesMod.getModel();
+        mod.addElement(album);
+        cb_AlbumesMod.setModel(mod);
+
+        tf_NombreAlbum.setText("");
+        tf_Fecha.setText("");
+        tf_GeneroAlbum.setText("");
+        tf_AliasProductor.setText("");
+        rdb_Digital.setSelected(true);
+        rdb_CD.setSelected(false);
     }//GEN-LAST:event_btn_GuardarAlbumMouseClicked
 
     private void btn_CrearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_CrearMouseClicked
@@ -800,18 +1205,18 @@ public class Inicio extends javax.swing.JFrame {
 
     private void btn_ModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ModificarMouseClicked
         //this.dispose();//bloquea el fondo
-        Modificar.pack();//permite ampliar el tamaño de la ventana
-        Modificar.setLocationRelativeTo(null);
-
-        Modificar.setVisible(true);
-    }//GEN-LAST:event_btn_ModificarMouseClicked
-
-    private void btn_EliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_EliminarMouseClicked
-        //this.dispose();//bloquea el fondo
         Eliminar.pack();//permite ampliar el tamaño de la ventana
         Eliminar.setLocationRelativeTo(null);
 
         Eliminar.setVisible(true);
+    }//GEN-LAST:event_btn_ModificarMouseClicked
+
+    private void btn_EliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_EliminarMouseClicked
+        //this.dispose();//bloquea el fondo
+        Modificar.pack();//permite ampliar el tamaño de la ventana
+        Modificar.setLocationRelativeTo(null);
+
+        Modificar.setVisible(true);
     }//GEN-LAST:event_btn_EliminarMouseClicked
 
     private void jTabbedPane2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane2StateChanged
@@ -841,18 +1246,126 @@ public class Inicio extends javax.swing.JFrame {
             } else {
                 lbl_Duracion.setText(minutos + ":" + segundos);
             }
-            
+
         }
     }//GEN-LAST:event_cb_CancionesMouseClicked
 
     private void btn_PlayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_PlayMouseClicked
         Canciones c = (Canciones) cb_Canciones.getSelectedItem();
         ac = cb_Canciones.getSelectedIndex();
-        
+
         AdminCancion admin = new AdminCancion(pb_Barra, lbl_Tiempo);
         pb_Barra.setMaximum(c.getDuracion());
         
+        
+        play.setPlay(true);
     }//GEN-LAST:event_btn_PlayMouseClicked
+
+    private void cb_AlbumesModItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_AlbumesModItemStateChanged
+        tf_AliasAlbumMod.setText("");
+        tf_FechaAlbumMod.setText("");
+        tf_GeneroAlbumMod.setText("");
+        tf_NombreAlbumMod.setText("");
+
+        Albumes seleccionado = (Albumes) cb_AlbumesMod.getSelectedItem();
+        tf_AliasAlbumMod.setText(seleccionado.getAlias_p());
+        tf_FechaAlbumMod.setText(seleccionado.getFecha_p());
+        tf_GeneroAlbumMod.setText(seleccionado.getGenero());
+        tf_NombreAlbumMod.setText(seleccionado.getNombre());
+
+        if (seleccionado.getFormato().equals("Digital")) {
+            rdb_DigitalMod.setSelected(true);
+        } else {
+            rdb_CDMod.setSelected(true);
+        }
+    }//GEN-LAST:event_cb_AlbumesModItemStateChanged
+
+    private void btn_ModAlbumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ModAlbumMouseClicked
+        Albumes seleccionado = (Albumes) cb_AlbumesMod.getSelectedItem();
+        seleccionado.setAlias_p(tf_AliasAlbumMod.getText());
+        seleccionado.setFecha_p(tf_FechaAlbumMod.getText());
+        seleccionado.setGenero(tf_GeneroAlbumMod.getText());
+        seleccionado.setNombre(tf_NombreAlbumMod.getText());
+
+        if (rdb_DigitalMod.isSelected()) {
+            seleccionado.setFormato("Digital");
+        } else {
+            seleccionado.setFormato("CD");
+        }
+
+        JOptionPane.showMessageDialog(this, "Album modoficado");
+    }//GEN-LAST:event_btn_ModAlbumMouseClicked
+
+    private void cb_ArtistasModItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_ArtistasModItemStateChanged
+        tf_NombreArtistaMod.setText("");
+        tf_GeneroArtMod.setText("");
+        tf_DisqueraMod.setText("");
+        tf_AliasMod.setText("");
+
+        Artistas select = (Artistas) cb_ArtistasMod.getSelectedItem();
+
+        tf_NombreArtistaMod.setText(select.getNombre());
+        tf_GeneroArtMod.setText(select.getGenero());
+        tf_DisqueraMod.setText(select.getDisquera());
+        tf_AliasMod.setText(select.getAlias());
+
+        if (select.getCancion().equals("Instrumental")) {
+            rdb_InstrunetalMod.setSelected(true);
+        } else {
+            rdb_VozMod.setSelected(true);
+        }
+    }//GEN-LAST:event_cb_ArtistasModItemStateChanged
+
+    private void btn_ModArtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ModArtMouseClicked
+        Artistas select = (Artistas) cb_ArtistasMod.getSelectedItem();
+        select.setNombre(tf_NombreArtistaMod.getText());
+        select.setGenero(tf_GeneroArtMod.getText());
+        select.setDisquera(tf_DisqueraMod.getText());
+        select.setAlias(tf_AliasMod.getText());
+        
+        if(rdb_InstrunetalMod.isSelected()){
+            select.setCancion("Instrumental");
+        }else{
+            select.setCancion("De Voz");
+        }
+        JOptionPane.showMessageDialog(this, "Artista modoficado");
+    }//GEN-LAST:event_btn_ModArtMouseClicked
+
+    private void cb_CancionesModItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_CancionesModItemStateChanged
+        Canciones select = (Canciones) cb_CancionesMod.getSelectedItem();
+        tf_NombreCancionMod.setText(select.getNombre());
+        tf_DuracionMod.setText(select.getDuracion()+"");
+        tf_CompositorMod.setText(select.getCompositor());
+        tf_DistribuidorMod.setText(select.getDistribuidor());
+        tf_ProductorMod.setText(select.getProductor());
+        tf_InvitadoMod.setText(select.getInvitado());
+        if(select.getExclusiva().equals("Sí")){
+            rdb_siMod.setSelected(true);
+        }else{
+            rdb_nomod.setSelected(true);
+            
+        }
+    }//GEN-LAST:event_cb_CancionesModItemStateChanged
+
+    private void btn_ModCancionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ModCancionMouseClicked
+        Canciones select = (Canciones) cb_CancionesMod.getSelectedItem();
+        select.setNombre(tf_NombreCancionMod.getText());
+        select.setDuracion(Integer.parseInt(tf_DuracionMod.getText()));
+        select.setCompositor(tf_CompositorMod.getText());
+        select.setDistribuidor(tf_DistribuidorMod.getText());
+        select.setProductor(tf_ProductorMod.getText());
+        select.setInvitado(tf_InvitadoMod.getText());
+        if(rdb_siMod.isSelected()){
+            select.setExclusiva("Sí");
+        }else{
+            select.setExclusiva("No");
+        }
+        JOptionPane.showMessageDialog(this, "Cancion modoficado");
+    }//GEN-LAST:event_btn_ModCancionMouseClicked
+
+    private void btn_PauseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_PauseMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_PauseMouseClicked
 
     /**
      * @param args the command line arguments
@@ -895,6 +1408,9 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.ButtonGroup Exclusivo;
     private javax.swing.ButtonGroup Formato;
     private javax.swing.JDialog Listar;
+    private javax.swing.ButtonGroup ModAlbum;
+    private javax.swing.ButtonGroup ModArt;
+    private javax.swing.ButtonGroup ModCancion;
     private javax.swing.JDialog Modificar;
     private javax.swing.ButtonGroup Tipo;
     private javax.swing.JButton btn_Canciones;
@@ -902,10 +1418,16 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JButton btn_Eliminar;
     private javax.swing.JButton btn_GuardarAlbum;
     private javax.swing.JButton btn_Listar;
+    private javax.swing.JButton btn_ModAlbum;
+    private javax.swing.JButton btn_ModArt;
+    private javax.swing.JButton btn_ModCancion;
     private javax.swing.JButton btn_Modificar;
     private javax.swing.JButton btn_Pause;
     private javax.swing.JButton btn_Play;
+    private javax.swing.JComboBox<String> cb_AlbumesMod;
+    private javax.swing.JComboBox<String> cb_ArtistasMod;
     private javax.swing.JComboBox<String> cb_Canciones;
+    private javax.swing.JComboBox<String> cb_CancionesMod;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -916,8 +1438,25 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -930,38 +1469,63 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JLabel lbl_Duracion;
     private javax.swing.JLabel lbl_Tiempo;
     private javax.swing.JProgressBar pb_Barra;
     private javax.swing.JRadioButton rdb_CD;
+    private javax.swing.JRadioButton rdb_CDMod;
     private javax.swing.JRadioButton rdb_Digital;
+    private javax.swing.JRadioButton rdb_DigitalMod;
     private javax.swing.JRadioButton rdb_Instrumental;
+    private javax.swing.JRadioButton rdb_InstrunetalMod;
     private javax.swing.JRadioButton rdb_No;
     private javax.swing.JRadioButton rdb_Si;
     private javax.swing.JRadioButton rdb_Voz;
+    private javax.swing.JRadioButton rdb_VozMod;
+    private javax.swing.JRadioButton rdb_nomod;
+    private javax.swing.JRadioButton rdb_siMod;
     private javax.swing.JTable tabla_Album;
     private javax.swing.JTable tabla_Artistas;
     private javax.swing.JTable tabla_Canciones;
     private javax.swing.JTextField tf_Alias;
+    private javax.swing.JTextField tf_AliasAlbumMod;
+    private javax.swing.JTextField tf_AliasMod;
     private javax.swing.JTextField tf_AliasProductor;
     private javax.swing.JTextField tf_Compositor;
+    private javax.swing.JTextField tf_CompositorMod;
     private javax.swing.JTextField tf_Disquera;
+    private javax.swing.JTextField tf_DisqueraMod;
     private javax.swing.JTextField tf_Distribuidor;
+    private javax.swing.JTextField tf_DistribuidorMod;
     private javax.swing.JFormattedTextField tf_Duracion;
+    private javax.swing.JTextField tf_DuracionMod;
     private javax.swing.JFormattedTextField tf_Fecha;
+    private javax.swing.JFormattedTextField tf_FechaAlbumMod;
     private javax.swing.JTextField tf_Genero;
     private javax.swing.JTextField tf_GeneroAlbum;
+    private javax.swing.JTextField tf_GeneroAlbumMod;
+    private javax.swing.JTextField tf_GeneroArtMod;
     private javax.swing.JTextField tf_Invitado;
+    private javax.swing.JTextField tf_InvitadoMod;
     private javax.swing.JTextField tf_NombreAlbum;
+    private javax.swing.JTextField tf_NombreAlbumMod;
     private javax.swing.JTextField tf_NombreArtista;
+    private javax.swing.JTextField tf_NombreArtistaMod;
     private javax.swing.JTextField tf_NombreCancion;
+    private javax.swing.JTextField tf_NombreCancionMod;
     private javax.swing.JTextField tf_Productor;
+    private javax.swing.JTextField tf_ProductorMod;
     // End of variables declaration//GEN-END:variables
     int ac;
     int flag = 1;
+    AdminCancion play;
 }

@@ -18,6 +18,7 @@ public class AdminCancion extends Thread {
         this.play = true;
         this.continua = true;
         this.tiempo = tiempo;
+       // this.cancion = cancion;
     }
 
     
@@ -49,7 +50,8 @@ public class AdminCancion extends Thread {
                     segundos2 = 0;
                 }
                 
-                barra.setString("");
+                barra.setValue(barra.getValue()+1);
+                barra.setString("No logré hacer que funcionara");
             }
             try{
                 Thread.sleep(1000);
